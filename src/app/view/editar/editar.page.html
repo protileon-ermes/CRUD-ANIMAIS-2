@@ -1,0 +1,44 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-title>Animais</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-list>
+    <ion-item>
+      <ion-toggle (ionChange)="PermitirEdicao()">Habilitar Edição</ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Espécie" placeholder="Insira a Especie" [(ngModel)]="especie" disabled="{{edicao}}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Nome" placeholder="Insira o nome" [(ngModel)]="nome" disabled="{{edicao}}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-select label="Gênero" placeholder="Selecione" [(ngModel)]="genero" disabled="{{edicao}}">
+        <ion-select-option value="0">Fêmea</ion-select-option>
+        <ion-select-option value="1">Macho</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Peso" placeholder="Insira o peso do animal" [(ngModel)]="peso" type="number" disabled="{{edicao}}"></ion-input>
+    </ion-item>
+    <ion-select label="Saúde" placeholder="Escolha" [(ngModel)]="saude" disabled="{{edicao}}">
+      <ion-select-option value="0">Machucado/ferido></ion-select-option>
+      <ion-select-option value="1">Saudável</ion-select-option>
+      <ion-select-option value="2">Doente</ion-select-option>
+      <ion-select-option value="3">Aguardando exames</ion-select-option>
+    </ion-select>
+    <ion-item *ngIf="animal.downloadURL != null">
+      <img src="{{animal.downloadURL}}" />
+    </ion-item>
+    <ion-item>
+      <ion-button size="default" color="success" shape="round" disabled="{{edicao}}">
+        <input type="file" (change)="uploadFile($event.target)" />
+      </ion-button>
+    </ion-item>
+    <ion-button expand="block" (click)="editar()" color="secondary" disabled="{{edicao}}">Salvar</ion-button>
+    <ion-button expand="block" (click)="excluir()" color="danger" disabled="{{edicao}}">Excluir</ion-button>
+  </ion-list>
+</ion-content>
