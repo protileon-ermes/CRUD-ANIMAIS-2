@@ -43,10 +43,11 @@ export class EditarPage implements OnInit {
   }
 
   editar(){
-    if(!this.nome || !this.especie){
-      this.presentAlert("Erro","Nome e especie são obrigatorios");
+    if(!this.nome || !this.especie || !this.genero){
+      this.presentAlert("Erro","Nome, especie e genero são obrigatorios");
     }else{
       let novo: Animais = new Animais(this.especie, this.nome, this.genero);
+      novo.id = this.animal.id;
       novo.peso = this.peso;
       novo.saude= this.saude;
       if(this.imagem){
